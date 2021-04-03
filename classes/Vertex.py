@@ -4,8 +4,10 @@ class Vertex:
         self.label = label
 
     def __str__(self) -> str:
-        print('Vertex:', self.get_label())
-        return ''
+        return 'Vertex: ' + self.get_label()
+
+    def __hash__(self) -> int:
+        return hash(self.label)
 
     def get_label(self):
         return self.label
