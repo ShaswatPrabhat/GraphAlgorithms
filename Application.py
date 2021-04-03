@@ -8,6 +8,7 @@ def generate_and_print_graph():
     g.add_edge('a', 'b')
     g.add_edge('a', 'b')
     g.add_edge('a', 'b')
+    print(g)
     g.generate_adj_dict()
     g.print_adj_map()
 

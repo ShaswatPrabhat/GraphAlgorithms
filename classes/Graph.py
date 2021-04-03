@@ -5,7 +5,7 @@ from classes.Edge import Edge
 class Graph:
     def __init__(self) -> None:
         super().__init__()
-        self.adjacency_map = dict()
+        self.Adjacency_map = dict()
         self.Vertices = list()
         self.Edges = list()
 
@@ -24,7 +24,7 @@ class Graph:
     def add_vertex(self, label):
         try:
             if self.does_vertex_exist(label):
-                print("The Vertex with label", label, "already exists")
+                print("The Vertex with label", label, "already exists.\nPlease use a different label.")
             else:
                 self.Vertices.append(Vertex(label))
         except AttributeError:
@@ -59,15 +59,16 @@ class Graph:
     def generate_adj_dict(self):
         try:
             for v in self.Vertices:
-                self.adjacency_map[v.get_label()] = []
-            for e in self.Edges:
-                self.adjacency_map[e.get_source().get_label()].append(e.get_destination())
+                edge_list_for_vertex = [e.get_destination() for e in self.Edges if
+                                        e.get_source().get_label() == v.get_label()]
+                self.Adjacency_map[v.get_label()] = edge_list_for_vertex
+
         except TypeError:
             pass
 
     def print_adj_map(self):
-        for vertex_label in self.adjacency_map.keys():
+        for vertex_label in self.Adjacency_map.keys():
             print('Vertex', vertex_label, '->', end=" ")
-            for edge in self.adjacency_map[vertex_label]:
+            for edge in self.Adjacency_map[vertex_label]:
                 print(edge, end=", ")
             print("")
